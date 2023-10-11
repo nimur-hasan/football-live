@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.Leagues"
+    android:background="@color/primary">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <!--    ♥️ Search Input    -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search Leagues"
+            app:boxBackgroundColor="@color/primaryDark"
+            android:layout_marginHorizontal="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEdtTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/primaryLight"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            android:visibility="visible"
+            app:lottie_rawRes="@raw/loading_animation_matches"
+            app:lottie_loop="true"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLeagues"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</FrameLayout>

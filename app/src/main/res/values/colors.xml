@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="splashStatus">#1F4171</color>
+    <color name="splashScreen">#1F4171</color>
+
+    <color name="textColor">#FFFFFF</color>
+
+    <color name="primary">#1F2025</color>
+    <color name="primaryDark">#090A0C</color>
+    <color name="primaryLight">#CDCED2</color>
+    <color name="primarySemiLight">#6A6B6F</color>
+
+    <color name="secondary">#18191B</color>
+    <color name="secondaryLight">#447ED2</color>
+</resources>

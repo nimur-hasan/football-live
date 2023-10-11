@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_matches"
+        android:title="Matches"
+        android:icon="@drawable/football_icon" />
+
+    <item
+        android:id="@+id/navigation_leagues"
+        android:title="Leagues"
+        android:icon="@drawable/trophy_icon" />
+
+    <item
+        android:id="@+id/navigation_live_tv"
+        android:title="TV"
+        android:icon="@drawable/live_tv_icon" />
+
+    <item
+        android:id="@+id/navigation_team"
+        android:title="Team"
+        android:icon="@drawable/team_icon" />
+
+    <item
+        android:id="@+id/navigation_more"
+        android:title="More"
+        android:icon="@drawable/menu_icon" />
+</menu>

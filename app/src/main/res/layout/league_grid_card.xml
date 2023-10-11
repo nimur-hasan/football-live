@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/container"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:background="@color/primaryDark">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgLeague"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/fc_logo"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtLeagueName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Premier league"
+                android:textAlignment="center"
+                android:textColor="@color/primaryLight"
+                android:layout_marginTop="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtLiveMatches"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="05-05-2023"
+                android:visibility="gone"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="#AD1457"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtLeagueStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="05-05-2023"
+                android:visibility="gone"
+                android:textColor="@color/primaryLight"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtLeagueEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="05-05-2023"
+                android:textColor="@color/primaryLight"
+                android:textSize="12sp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
+</androidx.appcompat.widget.LinearLayoutCompat>

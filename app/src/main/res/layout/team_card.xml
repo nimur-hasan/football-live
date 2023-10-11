@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgTeam"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/fc_logo"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/imgTeam"
+                android:layout_marginLeft="8dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtTeamName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manchester United"
+                    android:textColor="@color/primaryLight"
+                    android:textSize="18sp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtTeamLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sir Matt Busby Way - Manchester"
+                    android:textColor="@color/secondaryLight"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtFounded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="England - 1878"
+                    android:textColor="@color/primarySemiLight"
+                    android:textSize="14sp"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/primaryDark"/>
+</androidx.appcompat.widget.LinearLayoutCompat>

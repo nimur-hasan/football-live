@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.FootballLive" parent="Base.Theme.FootballLive">
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:backdropColor">@color/primary</item>
+    </style>
+</resources>

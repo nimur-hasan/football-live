@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/primary"
+    android:id="@+id/matchSummaryCardContainer">
+
+    <!--  Home  -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtMatchTime"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="02:45PM"
+            android:textColor="@color/primarySemiLight"
+            android:paddingBottom="4dp"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgTeamHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txtMatchTime"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/txtMatchTime"
+            android:gravity="center">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgFcHome"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/fc_logo" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTeamHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/primaryLight"
+                android:text="Sydney FC" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txtMatchTime"
+            android:layout_alignTop="@+id/txtMatchTime"
+            android:layout_alignParentEnd="true"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtGoalHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/primaryLight"
+                android:text="3"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+
+    <!--  Away  -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtMatchStatus"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:textColor="@color/primarySemiLight"
+            android:text="FT" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgTeamAway"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txtMatchStatus"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/txtMatchStatus"
+            android:gravity="center">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgFcAway"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/fc_logo" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTeamAway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/primaryLight"
+                android:text="Bologna" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txtMatchStatus"
+            android:layout_alignTop="@+id/txtMatchStatus"
+            android:layout_alignParentEnd="true"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtGoalAway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/primaryLight"
+                android:text="1"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="16dp">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtMatchDate"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:text="2023-08-27"
+            android:textColor="@color/primarySemiLight"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtVenue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10, Foxtel Now, 10Play"
+            android:textAlignment="textStart"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/secondaryLight"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/primaryDark"/>
+</androidx.appcompat.widget.LinearLayoutCompat>
