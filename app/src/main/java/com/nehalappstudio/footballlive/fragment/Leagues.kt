@@ -96,6 +96,13 @@ class Leagues : Fragment() {
                 println("API Response: $response")
 
                 dataList.clear();
+                dataList.add(LeagueCardModel("39", "https://media-4.api-sports.io/football/leagues/39.png", "Premier League", "todo","England", "null", "null", "null"))
+                dataList.add(LeagueCardModel("140", "https://media-4.api-sports.io/football/leagues/140.png", "La Liga", "todo","null", "null", "null", "null"))
+                dataList.add(LeagueCardModel("71", "https://media-4.api-sports.io/football/leagues/71.png", "Serie A", "todo","null", "null", "null", "null"))
+                dataList.add(LeagueCardModel("2", "https://media-4.api-sports.io/football/leagues/2.png", "UEFA Champions League", "todo","null", "null", "null", "null"))
+                dataList.add(LeagueCardModel("3", "https://media-4.api-sports.io/football/leagues/3.png", "UEFA Europa League", "todo","null", "null", "null", "null"))
+                dataList.add(LeagueCardModel("848", "https://media-4.api-sports.io/football/leagues/848.png", "UEFA Europa Conference League", "todo","null", "null", "null", "null"))
+                dataList.add(LeagueCardModel("253", "https://media-4.api-sports.io/football/leagues/253.png", "Major League Soccer", "todo","null", "null", "null", "null"))
 //                Toast.makeText(requireContext(), "Api Request Successful", Toast.LENGTH_LONG).show()
 
                 val responseArr = response.getJSONArray("response")

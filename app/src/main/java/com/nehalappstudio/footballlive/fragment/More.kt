@@ -1,33 +1,28 @@
 package com.nehalappstudio.footballlive.fragment
 
+import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import com.nehalappstudio.footballlive.PrivacyPolicy
 import com.nehalappstudio.footballlive.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [More.newInstance] factory method to
- * create an instance of this fragment.
- */
 class More : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var rlAbout: RelativeLayout
+    private lateinit var rlRateMe: RelativeLayout
+    private lateinit var rlShare: RelativeLayout
+    private lateinit var rlPrivacyPolicy: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -35,26 +30,64 @@ class More : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_more, container, false)
+        val view = inflater.inflate(R.layout.fragment_more, container, false);
+
+        rlAbout = view.findViewById(R.id.rlAboutUs)
+        rlRateMe = view.findViewById(R.id.rlRateMe)
+        rlShare = view.findViewById(R.id.rlShare)
+        rlPrivacyPolicy = view.findViewById(R.id.rlPrivacyPolicy)
+
+        rlAbout.setOnClickListener {
+            showInfoAlertDialog()
+        }
+
+        rlShare.setOnClickListener {
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+
+            // Get the package name
+            val packageName = requireContext().packageName
+
+            val shareContent = "https://play.google.com/store/apps/details?id="+packageName
+
+            // Set the content to share
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, shareContent)
+
+            // Create a chooser dialog
+            val chooserIntent = Intent.createChooser(
+                sharingIntent, "Share via"
+            )
+
+            if (sharingIntent.resolveActivity(requireContext().packageManager) != null) {
+                startActivity(chooserIntent)
+            } else {
+                // Handle the case where there are no apps to handle the intent
+            }
+        }
+
+        rlRateMe.setOnClickListener {
+            val webUri = Uri.parse("https://play.google.com/store/apps/details?id=${requireContext().packageName}")
+            val webIntent = Intent(Intent.ACTION_VIEW, webUri)
+            startActivity(webIntent)
+        }
+
+        rlPrivacyPolicy.setOnClickListener {
+            startActivity(Intent(requireContext(), PrivacyPolicy::class.java))
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment More.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            More().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun showInfoAlertDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("About Us")
+        builder.setMessage("Live Football is an app that provides you Live score, schedule and leagues.")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            // Handle the OK button click (if needed)
+            dialog.dismiss()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
     }
 }

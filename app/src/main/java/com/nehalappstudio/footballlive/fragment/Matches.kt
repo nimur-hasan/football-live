@@ -1,11 +1,14 @@
 package com.nehalappstudio.footballlive.fragment
 
+import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -18,6 +21,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.imageview.ShapeableImageView
+import com.nehalappstudio.footballlive.MatchDetails
 import com.nehalappstudio.footballlive.R
 import com.nehalappstudio.footballlive.adapter.MatchAdapter
 import com.nehalappstudio.footballlive.models.FeaturedLeagueModel
@@ -36,6 +40,10 @@ class Matches : Fragment() {
     private lateinit var matchAdapter: MatchAdapter
     private lateinit var lottieAnimationView: LottieAnimationView
     private lateinit var featuredLeagueList: ArrayList<FeaturedLeagueModel>
+    private lateinit var imgSearch: ShapeableImageView
+    private lateinit var imgCalender: ShapeableImageView
+    private lateinit var txtMonthName: TextView
+
 
     private lateinit var txt1:TextView;
     private lateinit var txt2:TextView;
@@ -58,6 +66,7 @@ class Matches : Fragment() {
     private lateinit var featuredLeague8: ShapeableImageView
     private lateinit var featuredLeague9: ShapeableImageView
     private lateinit var featuredLeague10: ShapeableImageView
+    private lateinit var datePicker: DatePicker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,6 +94,16 @@ class Matches : Fragment() {
         txt8 = myView.findViewById(R.id.txt8)
         txt9 = myView.findViewById(R.id.txt9)
         txt10 = myView.findViewById(R.id.txt10)
+
+        imgSearch = myView.findViewById(R.id.imgSearch)
+        imgSearch.setOnClickListener {
+
+        }
+        imgCalender = myView.findViewById(R.id.imgCalender)
+        imgCalender.setOnClickListener {
+            showDatePickerDialog()
+        }
+        txtMonthName = myView.findViewById(R.id.txtMonthName)
 
         featuredLeagueList = ArrayList()
         featuredLeagueList.add(FeaturedLeagueModel("https://media-4.api-sports.io/football/leagues/39.png", "Premier League","39" ))
@@ -171,8 +190,97 @@ class Matches : Fragment() {
         txt8.text = getDayOfMonthBySetDate(selectedDay+6).toString();
         txt9.text = getDayOfMonthBySetDate(selectedDay+7).toString();
         txt10.text = getDayOfMonthBySetDate(selectedDay+8).toString();
+        getDateBySetDay(selectedDay)
+        searchMatchesByDate(getDateBySetDay(selectedDay))
+    }
 
-        fetchDayMatches("", true, "")
+    private fun searchMatchesByDate(date:String) {
+
+        lottieAnimationView.visibility = View.VISIBLE
+        rvMatch.visibility = View.GONE
+
+        val requestQueue: RequestQueue = Volley.newRequestQueue(requireContext())
+        var apiUrl = "https://v3.football.api-sports.io/fixtures?date="+date
+
+
+
+
+        val stringRequest = object : JsonObjectRequest(
+            Request.Method.GET,
+            apiUrl,
+            null,
+            Response.Listener { response ->
+                println("API Response: $response")
+
+                dataList.clear();
+//                Toast.makeText(requireContext(), "Api Request Successful", Toast.LENGTH_LONG).show()
+
+                val responseArr = response.getJSONArray("response")
+
+                for (i in 0 until responseArr.length()) {
+                    val fixtureFullObj = responseArr.getJSONObject(i)
+
+                    val fixtureObj = fixtureFullObj.getJSONObject("fixture")
+                    val leagueObj = fixtureFullObj.getJSONObject("league")
+                    val teamsObj = fixtureFullObj.getJSONObject("teams")
+                    val goalsObj = fixtureFullObj.getJSONObject("goals")
+                    val scoreObj = fixtureFullObj.getJSONObject("score")
+
+                    val fixtureID = fixtureObj.getString("id")
+                    val date = fixtureObj.getString("date")
+                    val timestamp = fixtureObj.getString("timestamp")
+                    val status = fixtureObj.getJSONObject("status").getString("short")
+                    val duration = fixtureObj.getJSONObject("status").getString("elapsed")
+                    val venueId = fixtureObj.getJSONObject("venue").getString("id")
+                    val venueName = fixtureObj.getJSONObject("venue").getString("name")
+                    val venueCity = fixtureObj.getJSONObject("venue").getString("city")
+                    val league = leagueObj.getString("name")
+
+                    val homeId = teamsObj.getJSONObject("home").getString("id")
+                    val homeName = teamsObj.getJSONObject("home").getString("name")
+                    val homeLogo = teamsObj.getJSONObject("home").getString("logo")
+                    val homeWinner = false
+
+                    val awayId = teamsObj.getJSONObject("away").getString("id")
+                    val awayName = teamsObj.getJSONObject("away").getString("name")
+                    val awayLogo = teamsObj.getJSONObject("away").getString("logo")
+                    val awayWinner = false
+
+                    val homeGoals = goalsObj.getString("home")
+                    val awayGoals = goalsObj.getString("away")
+
+                    val homeTeam = SingleTeam(homeId, homeName, homeLogo, homeWinner, homeGoals)
+                    val awayTeam = SingleTeam(awayId, awayName, awayLogo, awayWinner, awayGoals)
+                    val team = TeamModel(homeTeam, awayTeam)
+
+                    val venue = VenueModel(venueId, venueName, venueCity)
+
+                    val matchCardData = MatchCardModel(fixtureID, date, timestamp, status, team, venue, duration, league)
+
+                    Log.d("homeName", homeName)
+
+                    dataList.add(matchCardData)
+                }
+
+                lottieAnimationView.visibility = View.GONE
+                rvMatch.visibility = View.VISIBLE
+                matchAdapter.notifyDataSetChanged()
+
+
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(requireContext(), "Api Request Failed.", Toast.LENGTH_LONG).show()
+                println("API Request Failed: ${error.message}")
+            }
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["x-rapidapi-key"] = "9934587b22930a733e2774cb3b1f3e1d"
+                headers["x-rapidapi-host"] = "v3.football.api-sports.io"
+                return headers
+            }
+        }
+        requestQueue.add(stringRequest)
     }
 
     private fun fetchDayMatches(season:String, live:Boolean, leagueId:String) {
@@ -326,5 +434,41 @@ class Matches : Fragment() {
         return formattedDate
     }
 
+    private fun showDatePickerDialog() {
+        val calendar = java.util.Calendar.getInstance()
+        val year = calendar.get(java.util.Calendar.YEAR)
+        val month = calendar.get(java.util.Calendar.MONTH)
+        val day = calendar.get(java.util.Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
+                Log.d("selected date", selectedDate)
+                val monthNames = arrayOf(
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"
+                )
+                // Do something with the selected date, e.g., display it in a TextView
+                // textView.text = selectedDate
+                searchMatchesByDate(selectedDate)
+                val monthName = monthNames[selectedMonth]
+                txtMonthName.text = monthName
+            },
+            year, month, day
+        )
+
+        datePickerDialog.show()
+    }
 
 }

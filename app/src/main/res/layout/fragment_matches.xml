@@ -43,6 +43,7 @@
                     android:src="@drawable/star_border_icon" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtMonthName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/imgSearch"

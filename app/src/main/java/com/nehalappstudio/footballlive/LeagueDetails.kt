@@ -1,5 +1,6 @@
 package com.nehalappstudio.footballlive
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +37,7 @@ class LeagueDetails : AppCompatActivity() {
     lateinit var txtLeagueEnd: TextView
     lateinit var txtLeagueVenue: TextView
     lateinit var txtLeagueSession: TextView
+    lateinit var txtStanding: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,7 @@ class LeagueDetails : AppCompatActivity() {
         txtLeagueStart = findViewById(R.id.txtLeagueStart)
         txtLeagueEnd = findViewById(R.id.txtLeagueEnd)
         txtLeagueSession = findViewById(R.id.txtLeagueSession)
+        txtStanding = findViewById(R.id.txtStanding)
 
         lottieAnimationView = findViewById(R.id.lottieAnimationView)
         rvMatches = findViewById(R.id.rvMatches)
@@ -80,6 +83,12 @@ class LeagueDetails : AppCompatActivity() {
 
             txtLeagueSession.text = currentYear.toString()
             fetchDayMatches(id, currentYear.toString())
+        }
+
+        txtStanding.setOnClickListener {
+            val myIntent = Intent(this, Standing::class.java);
+            myIntent.putExtra("id", id);
+            startActivity(myIntent)
         }
 
     }

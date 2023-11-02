@@ -53,6 +53,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.0")
 
     implementation("com.google.android.exoplayer:exoplayer-core:2.14.0")
+    implementation("com.google.android.exoplayer:exoplayer-hls:2.14.0")
     implementation("com.google.android.exoplayer:exoplayer-ui:2.14.0")
 
 

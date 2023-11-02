@@ -18,6 +18,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
+            android:name=".FullScreenTv"
+            android:screenOrientation="landscape"
+            android:exported="false" />
+        <activity
+            android:name=".PrivacyPolicy"
+            android:exported="false" />
+        <activity
+            android:name=".Standing"
+            android:exported="false" />
+        <activity
             android:name=".MatchDetails"
             android:exported="false" />
         <activity
